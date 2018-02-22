@@ -355,6 +355,7 @@ namespace calc {
 			this->button12->TabIndex = 13;
 			this->button12->Text = L"+";
 			this->button12->UseVisualStyleBackColor = false;
+			this->button12->Click += gcnew System::EventHandler(this, &plansza::button12_Click);
 			// 
 			// button13
 			// 
@@ -369,6 +370,7 @@ namespace calc {
 			this->button13->TabIndex = 15;
 			this->button13->Text = L"x";
 			this->button13->UseVisualStyleBackColor = false;
+			this->button13->Click += gcnew System::EventHandler(this, &plansza::button13_Click);
 			// 
 			// button14
 			// 
@@ -383,6 +385,7 @@ namespace calc {
 			this->button14->TabIndex = 14;
 			this->button14->Text = L"-";
 			this->button14->UseVisualStyleBackColor = false;
+			this->button14->Click += gcnew System::EventHandler(this, &plansza::button14_Click);
 			// 
 			// button15
 			// 
@@ -397,6 +400,7 @@ namespace calc {
 			this->button15->TabIndex = 19;
 			this->button15->Text = L"/";
 			this->button15->UseVisualStyleBackColor = false;
+			this->button15->Click += gcnew System::EventHandler(this, &plansza::button15_Click);
 			// 
 			// button16
 			// 
@@ -522,21 +526,28 @@ namespace calc {
 			this->PerformLayout();
 
 		}
+
+		double pierwsza;
+		double druga;
+		double wynik;
+		char operacja;
+		bool status = false;
+
 #pragma endregion
 
 
-		private: Void wypisz(String^ liczba) {
+private: Void wypisz(String^ liczba) {
 
-			if (txtOkno->Text == "0") {
+	if (txtOkno->Text == "0" || status ) {
 				txtOkno->Text = liczba;
 			}
 			else {
 				txtOkno->Text += liczba;
 			}
-
+			status = false;
 		}
 
-	private: System::Void pomocToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void pomocToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		pomoc^ onas = gcnew pomoc();
 		onas->Show();
@@ -591,6 +602,40 @@ private: System::Void button10_Click(System::Object^  sender, System::EventArgs^
 }
 private: System::Void button11_Click(System::Object^  sender, System::EventArgs^  e) {
 	wypisz(",");
+}
+private: System::Void button12_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	pierwsza = Convert::ToDouble(txtOkno->Text);
+	operacja = '+';
+	//this->txtOkno->Text = "0";
+	status = true;
+
+}
+private: System::Void button13_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	pierwsza = Convert::ToDouble(txtOkno->Text);
+	operacja = '*';
+	//this->txtOkno->Text = "0";
+	status = true;
+
+
+}
+private: System::Void button14_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	pierwsza = Convert::ToDouble(txtOkno->Text);
+	operacja = '-';
+	//this->txtOkno->Text = "0";
+	status = true;
+
+
+}
+private: System::Void button15_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	pierwsza = Convert::ToDouble(txtOkno->Text);
+	operacja = '/';
+	//this->txtOkno->Text = "0";
+	status = true;
+
 }
 };
 }
