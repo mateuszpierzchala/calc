@@ -430,6 +430,7 @@ namespace calc {
 			this->button18->TabIndex = 16;
 			this->button18->Text = L"C";
 			this->button18->UseVisualStyleBackColor = false;
+			this->button18->Click += gcnew System::EventHandler(this, &plansza::button18_Click);
 			// 
 			// button17
 			// 
@@ -486,6 +487,7 @@ namespace calc {
 			this->button21->TabIndex = 20;
 			this->button21->Text = L"=";
 			this->button21->UseVisualStyleBackColor = false;
+			this->button21->Click += gcnew System::EventHandler(this, &plansza::button21_Click);
 			// 
 			// plansza
 			// 
@@ -636,6 +638,48 @@ private: System::Void button15_Click(System::Object^  sender, System::EventArgs^
 	//this->txtOkno->Text = "0";
 	status = true;
 
+}
+private: System::Void button21_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	druga = Convert::ToDouble(txtOkno->Text);
+	
+	
+	switch (operacja)
+	{
+	case '+':
+		///
+		wynik = pierwsza + druga;
+		break;
+	case '-':
+		///
+		wynik = pierwsza - druga;
+		break;
+	case '*':
+		///
+		wynik = pierwsza * druga;
+		break;
+	case '/':
+		///
+		if (druga == 0) {
+			MessageBox::Show("Dzielenie przez zero jest niewykonalne!");
+		}
+		else
+		{
+			wynik = pierwsza / druga;
+		}
+		
+		break;
+	default:
+		//brak akcji
+		break;
+	}
+	this->txtOkno->Text = Convert::ToString(wynik);
+}
+private: System::Void button18_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->txtOkno->Text = "0";
+	pierwsza = 0;
+	druga = 0;
+	status = false;
 }
 };
 }
