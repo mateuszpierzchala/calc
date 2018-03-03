@@ -445,6 +445,7 @@ namespace calc {
 			this->button17->TabIndex = 23;
 			this->button17->Text = L"√";
 			this->button17->UseVisualStyleBackColor = false;
+			this->button17->Click += gcnew System::EventHandler(this, &plansza::button17_Click);
 			// 
 			// button19
 			// 
@@ -459,6 +460,7 @@ namespace calc {
 			this->button19->TabIndex = 22;
 			this->button19->Text = L"%";
 			this->button19->UseVisualStyleBackColor = false;
+			this->button19->Click += gcnew System::EventHandler(this, &plansza::button19_Click);
 			// 
 			// button20
 			// 
@@ -473,6 +475,7 @@ namespace calc {
 			this->button20->TabIndex = 21;
 			this->button20->Text = L"x²";
 			this->button20->UseVisualStyleBackColor = false;
+			this->button20->Click += gcnew System::EventHandler(this, &plansza::button20_Click);
 			// 
 			// button21
 			// 
@@ -570,6 +573,7 @@ private: System::Void zakończToolStripMenuItem_Click(System::Object^  sender, S
 	Application::Exit();
 }
 private: System::Void button16_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->txtOkno->Text = "0";
 }
 private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
 
@@ -658,6 +662,10 @@ private: System::Void button21_Click(System::Object^  sender, System::EventArgs^
 		///
 		wynik = pierwsza * druga;
 		break;
+	case 'p':
+		///
+		wynik = (pierwsza/100) * druga;
+		break;
 	case '/':
 		///
 		if (druga == 0) {
@@ -674,12 +682,34 @@ private: System::Void button21_Click(System::Object^  sender, System::EventArgs^
 		break;
 	}
 	this->txtOkno->Text = Convert::ToString(wynik);
+	status = true;
 }
 private: System::Void button18_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->txtOkno->Text = "0";
 	pierwsza = 0;
 	druga = 0;
 	status = false;
+}
+private: System::Void button17_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	pierwsza = Convert::ToDouble(txtOkno->Text);
+	wynik = Math::Sqrt(pierwsza);
+	this->txtOkno->Text = Convert::ToString(wynik);
+	status = true;
+
+}
+private: System::Void button20_Click(System::Object^  sender, System::EventArgs^  e) {
+	pierwsza = Convert::ToDouble(txtOkno->Text);
+	wynik = Math::Pow(pierwsza,2);
+	//wynik = pierwsza * pierwsza;
+	this->txtOkno->Text = Convert::ToString(wynik);
+	status = true;
+}
+private: System::Void button19_Click(System::Object^  sender, System::EventArgs^  e) {
+	pierwsza = Convert::ToDouble(txtOkno->Text);
+	status = true;
+	operacja = 'p';
+
 }
 };
 }
